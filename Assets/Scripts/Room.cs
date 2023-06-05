@@ -6,17 +6,35 @@ using Cinemachine;
 public class Room : MonoBehaviour
 {
     [SerializeField]
-    private GameObject attachedVC;
+    private GameObject nextVC;
+    [SerializeField]
+    private GameObject thisVC;
+    [SerializeField]
+    private Transform TravelToPos;
+
+    private GameObject playerRef;
+
+    private bool moving;
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Player")) {
-            attachedVC.SetActive(true);
+            if(playerRef == null) {
+                playerRef = other.transform.parent.parent.gameObject;
+            }
+            if(nextVC != null) {
+                if(!GameManager.Instance.GetPaused()) {
+                    nextVC.SetActive(true);
+                    thisVC.SetActive(false);
+                    GameManager.Instance.PausePlayer(true);
+                    playerRef.transform.Translate(transform.right * 2, Space.Self);
+                    StartCoroutine(TransitionWait());
+                }
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if(other.gameObject.CompareTag("Player")) {
-            attachedVC.SetActive(false);
-        }
+    private IEnumerator TransitionWait() {
+        yield return new WaitForSecondsRealtime(0.5f);
+        GameManager.Instance.PausePlayer(false);
     }
 }

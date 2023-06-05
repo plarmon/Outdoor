@@ -30,54 +30,57 @@ public class Door : MonoBehaviour
     private float rotateSpeed = 10.0f;
     private float rotateDirection;
 
+    private GameManager gm;
+
     // Input
     private Vector2 mousePos;
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(gm == null) {
+            Debug.Log("Door: GameManager not found");
+        }
     }
 
     private void FixedUpdate() {
-        if(followPoint != null) {
-            mousePos = Mouse.current.position.ReadValue();
-            Vector3 point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z));
-            Vector3 directionToMouse = point - transform.position;
+        if(!gm.GetPaused()) {
+            if(followPoint != null) {
+                mousePos = Mouse.current.position.ReadValue();
+                Vector3 point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, transform.position.z));
+                Vector3 directionToMouse = point - transform.position;
 
-            float distanceToMouse = Mathf.Clamp(Mathf.Abs(directionToMouse.magnitude), 0, maxDistanceToMouse);
+                float distanceToMouse = Mathf.Clamp(Mathf.Abs(directionToMouse.magnitude), 0, maxDistanceToMouse);
 
-            mouseOffset = directionToMouse.normalized * (distanceToMouse / maxDistanceToMouse) * reach;
-            mouseOffset = new Vector3(mouseOffset.x, mouseOffset.y, 0);
+                mouseOffset = directionToMouse.normalized * (distanceToMouse / maxDistanceToMouse) * reach;
+                mouseOffset = new Vector3(mouseOffset.x, mouseOffset.y, 0);
 
-            Vector3 toPoint = Vector3.Lerp(transform.position, followPoint.position + mouseOffset, followDragAmt);
-            Vector3 moveDir = toPoint - transform.position;
+                Vector3 toPoint = Vector3.Lerp(transform.position, followPoint.position + mouseOffset, followDragAmt);
+                Vector3 moveDir = toPoint - transform.position;
 
-            rb.velocity = moveDir * moveSpeed;
+                rb.velocity = moveDir * moveSpeed;
+            } else {
+                Debug.Log("Door: Follow Point not defined");
+            }
 
-            /* Debug.Log(moveDir.magnitude);
-            rb.AddForce(moveDir.normalized * 10, ForceMode.Force); */
+            // STRETCH GOAL: Want to make this a lerp somehow
+
+            // Rotates the door
+            transform.Rotate(new Vector3(0, 0, rotateDirection * rotateSpeed * Time.deltaTime), Space.Self);
+
+            // Clamps the rotation
+            if(transform.localEulerAngles.z > 90 && transform.localEulerAngles.z < 180) {
+                // Clamp z to 90
+                Debug.Log("Clamp z to 90");
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 90);
+            } else if (transform.localEulerAngles.z < 270 && transform.localEulerAngles.z > 180) {
+                // Clamp z to 270
+                Debug.Log("Clamp z to 270");
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 270);
+            }
         } else {
-            Debug.Log("Door: Follow Point not defined");
+            rb.velocity = Vector3.zero;
         }
-
-        // STRETCH GOAL: Want to make this a lerp somehow
-
-        // Rotates the door
-        transform.Rotate(new Vector3(0, 0, rotateDirection * rotateSpeed * Time.deltaTime), Space.Self);
-
-        // Clamps the rotation
-        if(transform.localEulerAngles.z > 90 && transform.localEulerAngles.z < 180) {
-            // Clamp z to 90
-            Debug.Log("Clamp z to 90");
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 90);
-        } else if (transform.localEulerAngles.z < 270 && transform.localEulerAngles.z > 180) {
-            // Clamp z to 270
-            Debug.Log("Clamp z to 270");
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 270);
-        }
-    }
-
-    private void Update() {
-
     }
 
     public void RotateClockwise(InputAction.CallbackContext value) {

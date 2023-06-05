@@ -13,12 +13,21 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+    private GameManager gm;
+
     private void Start() {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(gm == null) {
+            Debug.Log("PlayerController: GameManager not found");
+        }
+        
         horizontalInput = 0.0f;
     }
 
     private void FixedUpdate() {
-        transform.Translate(new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0), Space.Self);
+        if(!gm.GetPaused()) {
+            transform.Translate(new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0), Space.Self);
+        }
     }
 
     public void MoveInput(InputAction.CallbackContext value) {
@@ -27,6 +36,4 @@ public class PlayerController : MonoBehaviour
         verticalInput = value.ReadValue<Vector2>().y;
         verticalInput= Mathf.RoundToInt(verticalInput);
     }
-
-
 }
