@@ -7,6 +7,8 @@ public class Breakable : MonoBehaviour
     private LevelManager lm;
     [SerializeField]
     private ObjectType objectType;
+    [SerializeField]
+    private GameObject brokenPrefab;
 
     private enum ObjectType {
         NONE,
@@ -33,6 +35,16 @@ public class Breakable : MonoBehaviour
                     Debug.Log("Object Type not defined");
                     break;
             }
+
+            if(brokenPrefab != null) {
+                GameObject brokenObject = Instantiate(brokenPrefab, transform.position, transform.rotation);
+                if(objectType == ObjectType.VASE) {
+                    brokenObject.transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                }
+            } else {
+                Debug.Log("Breakable: No Broken Prefab defined");
+            }
+
             Destroy(gameObject);
         }
     }
