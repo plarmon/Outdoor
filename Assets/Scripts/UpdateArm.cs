@@ -25,12 +25,12 @@ public class UpdateArm : MonoBehaviour
 
     private void UpdateTransformForScale() {
         float distance = Vector3.Distance(startObject.transform.position, endObject.transform.position);
-        transform.localScale = new Vector3(initialScale.x, distance/2f, initialScale.z);
+        transform.localScale = new Vector3(initialScale.x, distance * initialScale.y, initialScale.z);
 
         Vector3 middlePoint = (startObject.transform.position + endObject.transform.position) / 2f;
         transform.position = middlePoint;
 
-        Vector3 rotationDirection = (endObject.transform.position - startObject.transform.position);
+        Vector3 rotationDirection = (startObject.transform.position - endObject.transform.position);
         transform.up = rotationDirection;
     }
 }

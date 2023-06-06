@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField]
     private Rigidbody rb;
 
     [SerializeField]
