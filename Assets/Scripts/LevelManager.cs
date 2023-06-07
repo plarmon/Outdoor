@@ -116,7 +116,6 @@ public class LevelManager : MonoBehaviour
             totalText.text = currentScore.ToString();
 
             float percentage = (float)currentScore / (float)maxScore;
-            Debug.Log(percentage);
 
             if(percentage >= 0.2f) {
                 star1.SetActive(true);
@@ -167,6 +166,19 @@ public class LevelManager : MonoBehaviour
         time -= 1f;
         StartCoroutine(CountDown());
 
+    }
+
+    public void MovePeople(Vector3 toPoint) {
+        foreach(GameObject person in people) {
+            StartCoroutine(MovePersonToPoint(toPoint, person));
+        }
+    }
+
+    private IEnumerator MovePersonToPoint(Vector3 toPoint, GameObject person) {
+        while(Vector3.Distance(person.transform.position, toPoint) > 0.1f) {
+            person.transform.position = Vector3.Lerp(person.transform.position, toPoint, 0.7f);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void AlertTheGallery() {

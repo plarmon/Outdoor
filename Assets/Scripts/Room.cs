@@ -11,10 +11,18 @@ public class Room : MonoBehaviour
     private GameObject thisVC;
     [SerializeField]
     private Transform TravelToPos;
+    [SerializeField]
+    private Transform personTransformPoint;
 
     private GameObject playerRef;
 
     private bool moving;
+
+    private LevelManager lm;
+
+    private void Start() {
+        lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+    }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Player")) {
@@ -28,6 +36,7 @@ public class Room : MonoBehaviour
                     GameManager.Instance.PausePlayer(true);
                     playerRef.transform.Translate(transform.right * 2, Space.Self);
                     StartCoroutine(TransitionWait());
+                    lm.MovePeople(personTransformPoint.position);
                 }
             }
         }

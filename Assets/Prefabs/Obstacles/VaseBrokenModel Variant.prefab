@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8917703946959959745, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59de5a7ac2b4b904f801750b0e124402,
         type: 3}
       propertyPath: m_RootOrder
@@ -78,10 +83,75 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -8035806193671307624, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6755632302942197516, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6554458113972422046, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -6131274880062641608, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5873765931867575472, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4906978144932614280, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2995828229661691052, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -80796838390250655, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 59de5a7ac2b4b904f801750b0e124402,
         type: 3}
       propertyPath: m_Name
       value: VaseBrokenModel Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946535146458512094, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021780583470790795, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608446386410023256, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704484798943859418, guid: 59de5a7ac2b4b904f801750b0e124402,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

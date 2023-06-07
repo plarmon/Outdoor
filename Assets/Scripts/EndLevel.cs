@@ -21,6 +21,10 @@ public class EndLevel : MonoBehaviour
             lm.SetIsLevelOver(true);
             scoreSheetUI.SetActive(true);
             gm.PausePlayer(true);
+            
+            if(GameObject.Find("Door") != null) {
+                GameObject.Find("Door").GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
         }
     }
 }

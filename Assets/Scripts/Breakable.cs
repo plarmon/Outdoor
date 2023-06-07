@@ -9,6 +9,8 @@ public class Breakable : MonoBehaviour
     private ObjectType objectType;
     [SerializeField]
     private GameObject brokenPrefab;
+    [SerializeField]
+    private LineRenderer cord;
 
     private enum ObjectType {
         NONE,
@@ -39,8 +41,9 @@ public class Breakable : MonoBehaviour
             if(brokenPrefab != null) {
                 GameObject brokenObject = Instantiate(brokenPrefab, transform.position, transform.rotation);
                 if(objectType == ObjectType.VASE) {
-                    brokenObject.transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                    brokenObject.transform.Translate(new Vector3(0, -0.5f, 0), Space.World);
                 }
+                brokenObject.transform.Rotate(new Vector3(-90,0,0), Space.Self);
             } else {
                 Debug.Log("Breakable: No Broken Prefab defined");
             }

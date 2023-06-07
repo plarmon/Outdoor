@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &8780808 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1243383508716068663, guid: ab01907a3930865489846fe784883a0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 929397046392080216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &51636078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,6 +2029,11 @@ PrefabInstance:
       propertyPath: nextVC
       value: 
       objectReference: {fileID: 1253656219}
+    - target: {fileID: 5769914837000191345, guid: ab01907a3930865489846fe784883a0e,
+        type: 3}
+      propertyPath: personTransformPoint
+      value: 
+      objectReference: {fileID: 8780808}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3460,6 +3471,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045306320}
   m_CullTransparentMesh: 1
+--- !u!1 &1045685851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045685853}
+  - component: {fileID: 1045685852}
+  m_Layer: 0
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!215 &1045685852
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045685851}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 1
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 10, y: 10, z: 10}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
+--- !u!4 &1045685853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045685851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15, y: 1.19, z: 12.147823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074218835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,6 +4369,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSheetUI: {fileID: 748076392}
+--- !u!4 &1506289807 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1243383508716068663, guid: ab01907a3930865489846fe784883a0e,
+    type: 3}
+  m_PrefabInstance: {fileID: 501017440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1577048409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6235,6 +6317,11 @@ PrefabInstance:
       propertyPath: nextVC
       value: 
       objectReference: {fileID: 501017442}
+    - target: {fileID: 6507163799761239386, guid: ab01907a3930865489846fe784883a0e,
+        type: 3}
+      propertyPath: personTransformPoint
+      value: 
+      objectReference: {fileID: 1506289807}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6503,6 +6590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504264479596048616, guid: 6539da4025c7e294396672e31331b922,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 4632142194584129630, guid: 6539da4025c7e294396672e31331b922,
         type: 3}
