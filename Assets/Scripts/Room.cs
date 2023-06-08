@@ -43,7 +43,15 @@ public class Room : MonoBehaviour
     }
 
     private IEnumerator TransitionWait() {
-        yield return new WaitForSecondsRealtime(0.5f);
+        // yield return new WaitForSecondsRealtime(0.5f);
+        Vector3 toPoint = playerRef.transform.position + (transform.right * 2);
+        while(Vector3.Distance(playerRef.transform.position, toPoint) > 0.1f) {
+            playerRef.transform.position = Vector3.Lerp(playerRef.transform.position, toPoint, 0.5f);
+            yield return new WaitForEndOfFrame();
+        }
+        GameObject door = GameObject.Find("Door");
+        door.transform.Translate(transform.right);
+        yield return new WaitForSeconds(2.0f);
         GameManager.Instance.PausePlayer(false);
     }
 }

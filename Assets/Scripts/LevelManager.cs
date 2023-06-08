@@ -59,7 +59,8 @@ public class LevelManager : MonoBehaviour
 
         people = GameObject.FindGameObjectsWithTag("Gallery");
 
-        currentScore = maxScore;
+        CalculateMaxScore();
+
         lowCostBreakCount = 0;
         midCostBreakCount = 0;
         highCostBreakCount = 0;
@@ -87,15 +88,20 @@ public class LevelManager : MonoBehaviour
         return currentScore;
     }
 
-    public void DecreaseScore(int amount) {
-        currentScore -= amount;
-
-        if(amount >= 20) {
-            highCostBreakCount += 1;
-        } else if(amount >= 10) {
-            midCostBreakCount += 1;
-        } else {
-            lowCostBreakCount += 1;
+    public void DecreaseScore(Breakable.ObjectSize objectSize) {
+        switch (objectSize) {
+            case Breakable.ObjectSize.SMALL:
+                currentScore -= 10;
+                lowCostBreakCount += 1;
+                break;
+            case Breakable.ObjectSize.MEDIUM:
+                currentScore -= 20;
+                midCostBreakCount += 1;
+                break;
+            case Breakable.ObjectSize.BIG:
+                currentScore -= 30;
+                highCostBreakCount += 1;
+                break;
         }
     }
 
@@ -166,6 +172,27 @@ public class LevelManager : MonoBehaviour
         time -= 1f;
         StartCoroutine(CountDown());
 
+    }
+
+    private void CalculateMaxScore() {
+        maxScore = 0;
+        GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Breakable");
+        foreach(GameObject breakableObject in allObjects) {
+            Breakable.ObjectSize objectSize = breakableObject.GetComponent<Breakable>().objectSize;
+            switch (objectSize) {
+                case Breakable.ObjectSize.SMALL:
+                    maxScore += 20;
+                    break;
+                case Breakable.ObjectSize.MEDIUM:
+                    maxScore += 40;
+                    break;
+                case Breakable.ObjectSize.BIG:
+                    maxScore += 60;
+                    break;
+            }
+        }
+
+        currentScore = maxScore;
     }
 
     public void MovePeople(Vector3 toPoint) {

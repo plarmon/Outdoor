@@ -7,10 +7,17 @@ public class Breakable : MonoBehaviour
     private LevelManager lm;
     [SerializeField]
     private ObjectType objectType;
+    public ObjectSize objectSize;
     [SerializeField]
     private GameObject brokenPrefab;
     [SerializeField]
     private LineRenderer cord;
+    [SerializeField]
+    private Transform cordObjectAttachPoint;
+
+    [SerializeField]
+    private GameObject sparkleEffectPrefab;
+    private GameObject sparkleInstance;
 
     private enum ObjectType {
         NONE,
@@ -18,13 +25,27 @@ public class Breakable : MonoBehaviour
         CHANDELIER
     }
 
+    public enum ObjectSize {
+        SMALL,
+        MEDIUM,
+        BIG
+    }
+
     private void Start() {
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        sparkleInstance = Instantiate(sparkleEffectPrefab, transform.position, transform.rotation);
+    }
+
+    private void Update() {
+        if(cord != null) {
+            cord.SetPosition(0, new Vector3(0,0,0));
+            cord.SetPosition(1, cordObjectAttachPoint.localPosition);
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Floor")) {
-            lm.DecreaseScore(10);
+            lm.DecreaseScore(objectSize);
             lm.AlertTheGallery();
             switch(objectType) {
                 case(ObjectType.VASE):
@@ -48,6 +69,7 @@ public class Breakable : MonoBehaviour
                 Debug.Log("Breakable: No Broken Prefab defined");
             }
 
+            Destroy(sparkleInstance);
             Destroy(gameObject);
         }
     }

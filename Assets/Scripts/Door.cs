@@ -9,7 +9,10 @@ public class Door : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField]
-    private Transform followPoint;
+    private GameObject model;
+
+    [SerializeField]
+    public Transform followPoint;
     [SerializeField] [Range(0,1)]
     private float followDragAmt;
 
