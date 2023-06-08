@@ -15,6 +15,10 @@ public class Person : MonoBehaviour
     // Speech
     private float textDisplayTime = 3.0f;
 
+    [SerializeField]
+    private GameObject model;
+    private GameObject playerRef;
+
     // Text Assets
     [SerializeField]
     private TextAsset casualDialogueText;
@@ -38,6 +42,8 @@ public class Person : MonoBehaviour
     private void Awake() {
         casualDialogue = ProceessText(casualDialogueText);
         alertedDialogue = ProceessText(alertedDialogueText);
+
+        playerRef = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start() {
@@ -45,6 +51,11 @@ public class Person : MonoBehaviour
         casualDialogueIndex = 0;
         alertedDialogueIndex = 0;
         StartCoroutine(CasualDialogue());
+    }
+
+    private void Update() {
+        // Look At Player
+        // model.transform.rotation = Quaternion.Euler(playerRef.transform.position - model.transform.position);
     }
 
     private Dialogue ProceessText(TextAsset textDoc) {

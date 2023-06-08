@@ -13,6 +13,8 @@ public class Breakable : MonoBehaviour
     [SerializeField]
     private LineRenderer cord;
     [SerializeField]
+    private GameObject anchor;
+    [SerializeField]
     private Transform cordObjectAttachPoint;
 
     [SerializeField]
@@ -38,8 +40,8 @@ public class Breakable : MonoBehaviour
 
     private void Update() {
         if(cord != null) {
-            cord.SetPosition(0, new Vector3(0,0,0));
-            cord.SetPosition(1, cordObjectAttachPoint.localPosition);
+            cord.SetPosition(0, anchor.transform.position);
+            cord.SetPosition(1, cordObjectAttachPoint.position);
         }
     }
 
@@ -61,9 +63,9 @@ public class Breakable : MonoBehaviour
 
             if(brokenPrefab != null) {
                 GameObject brokenObject = Instantiate(brokenPrefab, transform.position, transform.rotation);
-                if(objectType == ObjectType.VASE) {
+                /* if(objectType == ObjectType.VASE) {
                     brokenObject.transform.Translate(new Vector3(0, -0.5f, 0), Space.World);
-                }
+                } */
                 brokenObject.transform.Rotate(new Vector3(-90,0,0), Space.Self);
             } else {
                 Debug.Log("Breakable: No Broken Prefab defined");
