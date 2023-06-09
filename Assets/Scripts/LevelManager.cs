@@ -68,6 +68,8 @@ public class LevelManager : MonoBehaviour
         isLevelOver = false;
         outOfTime = false;
         StartCoroutine(CountDown());
+
+        gm.TriggerOpen();
     }
 
     public void InputPause(InputAction.CallbackContext value) {

@@ -637,7 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3d09507f106154a92b9bdd79b6453a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 3511467902474109917}
+  model: {fileID: 918359214548044886}
   followPoint: {fileID: 763101410317949210}
   followDragAmt: 0.257
   maxDistanceToMouse: 5
@@ -731,7 +732,7 @@ Rigidbody:
     m_Bits: 129
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 126
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -1166,7 +1167,7 @@ Transform:
   - {fileID: 8530310132009367897}
   - {fileID: 6486007893054882025}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &35961756393861383
 PrefabInstance:
@@ -1262,6 +1263,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 35961756393861383}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &918359214548044886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5161a02ae1e9f7447bb1c9619bb5f184,
+    type: 3}
+  m_PrefabInstance: {fileID: 35961756393861383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2115313279686598211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1273,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 556707032994012141, guid: 36ddb85b125b6a642a078ab0f217458b,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 5958
+      value: 6018
       objectReference: {fileID: 0}
     - target: {fileID: 2555177375641116926, guid: 36ddb85b125b6a642a078ab0f217458b,
         type: 3}
@@ -1353,7 +1360,7 @@ PrefabInstance:
     - target: {fileID: 8882928336600789620, guid: 36ddb85b125b6a642a078ab0f217458b,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 598
+      value: 658
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
