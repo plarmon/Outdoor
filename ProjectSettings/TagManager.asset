@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gallery
   - Breakable
+  - Door
   layers:
   - Default
   - TransparentFX

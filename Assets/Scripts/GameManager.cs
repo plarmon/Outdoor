@@ -29,8 +29,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Quit() {
+        Application.Quit();
+    }
+
+    public void RestartLevelWithWait(float waitTime) {
+        Debug.Log("Hit 1");
+        StartCoroutine(RestartLevel(waitTime));
+    }
+
+    private IEnumerator RestartLevel(float waitTime) {
+        Debug.Log("Hit 2");
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log(SceneManager.GetActiveScene().name);
+        StartCoroutine(CloseDoor(SceneManager.GetActiveScene().name));
+    }
+
     public void TriggerOpen() {
+        StartCoroutine(OpenDoor());
+    }
+
+    private IEnumerator OpenDoor() {
         transitionAnimator.SetTrigger(isStartingClosedHash);
+        yield return new WaitForSeconds(3.0f);
+        transitionRenderTexture.SetActive(false);
     }
 
     public void PausePlayer(bool isPaused) {
@@ -48,12 +70,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator CloseDoor(string sceneName) {
         if(transitionAnimator != null) {
             transitionAnimator.SetTrigger(closeDoorHash);
-            // 
-            /* if(transitionRenderTexture != null) {
-                transitionRenderTexture.SetActive(true);
-            } else {
-                Debug.Log("GameManager: trasition renderTexture not set");
-            } */
         } else {
             Debug.Log("GameManager: animator not set");
         }
