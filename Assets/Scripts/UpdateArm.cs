@@ -17,9 +17,11 @@ public class UpdateArm : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(startObject.transform.hasChanged || endObject.transform.hasChanged) {
-            // Change Scale
-            UpdateTransformForScale();
+        if(endObject != null) {
+            if(startObject.transform.hasChanged || endObject.transform.hasChanged) {
+                // Change Scale
+                UpdateTransformForScale();
+            }
         }
     }
 

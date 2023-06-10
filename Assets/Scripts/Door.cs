@@ -34,6 +34,16 @@ public class Door : MonoBehaviour
     private float rotateSpeed = 10.0f;
     private float rotateDirection;
 
+    [Header("Health/Damage")]
+    [SerializeField]
+    private GameObject brokenDoorPrefab;
+    [SerializeField]
+    private Material crackedMat;
+    private bool cracked = false;
+    [SerializeField]
+    private float maxHealth;
+    public float currentHealth;
+
     private GameManager gm;
 
     // Input
@@ -45,6 +55,8 @@ public class Door : MonoBehaviour
         if(gm == null) {
             Debug.Log("Door: GameManager not found");
         }
+
+        currentHealth = maxHealth;
     }
 
     private void FixedUpdate() {
@@ -103,5 +115,31 @@ public class Door : MonoBehaviour
         } else if(value.canceled) {
             rotateDirection -= 1;
         }
+    }
+
+    public bool TakeDamage(float damage) {
+        currentHealth -= damage;
+        // Play cracking sound
+        if((currentHealth / maxHealth) <= 0.5f && !cracked) {
+            cracked = true;
+            model.GetComponent<MeshRenderer>().material = crackedMat;
+        }
+        if(currentHealth <= 0) {
+            Break();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void Break() {
+        // Pause the Player
+        gm.PausePlayer(true);
+        // Spawn the broken door model
+        Instantiate(brokenDoorPrefab, transform.position, transform.rotation);
+        // Play sound
+        // Start coroutine to restart the game
+        gm.RestartLevelWithWait(2.0f);
+        Destroy(gameObject);
     }
 }
