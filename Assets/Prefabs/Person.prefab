@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 5950383419304573849}
   - component: {fileID: 7179255811644254832}
   - component: {fileID: 754664200746095382}
+  - component: {fileID: 1628054204164234196}
   m_Layer: 0
   m_Name: Person
   m_TagString: Gallery
@@ -273,6 +274,26 @@ MonoBehaviour:
   textBox: {fileID: 4963579147977724430}
   speechText: {fileID: 9104710779173900657}
   nameText: {fileID: 8681054019235166451}
+--- !u!95 &1628054204164234196
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665533781706333481}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: accfeaf03594e6d44b1e5f776a11cf34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1842717280551510257
 GameObject:
   m_ObjectHideFlags: 0

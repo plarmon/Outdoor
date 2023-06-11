@@ -78,11 +78,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5103411483515222232, guid: 838d558fc7227594e8902f89c1b9d376,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f69e4a919de9bc243af86ed2a2e65e7c, type: 2}
     - target: {fileID: 919132149155446097, guid: 838d558fc7227594e8902f89c1b9d376,
         type: 3}
       propertyPath: m_Name
       value: DoorModelBroken Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1741506042474426101, guid: 838d558fc7227594e8902f89c1b9d376,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f69e4a919de9bc243af86ed2a2e65e7c, type: 2}
+    - target: {fileID: 4826995591024338243, guid: 838d558fc7227594e8902f89c1b9d376,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f69e4a919de9bc243af86ed2a2e65e7c, type: 2}
+    - target: {fileID: 5771879935722385197, guid: 838d558fc7227594e8902f89c1b9d376,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f69e4a919de9bc243af86ed2a2e65e7c, type: 2}
+    - target: {fileID: 8247850577448708049, guid: 838d558fc7227594e8902f89c1b9d376,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f69e4a919de9bc243af86ed2a2e65e7c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

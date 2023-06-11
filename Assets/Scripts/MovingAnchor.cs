@@ -11,15 +11,20 @@ public class MovingAnchor : MonoBehaviour
     private float travelSpeed;
     private float distance;
 
+    private GameManager gm;
+
     private void Start() {
         startingPosition = transform.position;
         distance = 0;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3 (startingPosition.x + (Mathf.Sin(distance) * maxDistanceTravel), startingPosition.y, startingPosition.z);  
-        distance += travelSpeed * Time.deltaTime; 
+        if(!gm.GetPaused()) {
+            transform.position = new Vector3 (startingPosition.x + (Mathf.Sin(distance) * maxDistanceTravel), startingPosition.y, startingPosition.z);  
+            distance += travelSpeed * Time.deltaTime; 
+        }
     }
 }

@@ -199,12 +199,15 @@ public class LevelManager : MonoBehaviour
 
     public void MovePeople(Vector3 toPoint) {
         foreach(GameObject person in people) {
-            StartCoroutine(MovePersonToPoint(toPoint, person));
+            // StartCoroutine(MovePersonToPoint(toPoint, person));
+            person.transform.position = toPoint;
         }
     }
 
     private IEnumerator MovePersonToPoint(Vector3 toPoint, GameObject person) {
+        Debug.Log("Hit: " + person.name + " to ->" + toPoint);
         while(Vector3.Distance(person.transform.position, toPoint) > 0.1f) {
+            Debug.Log("Hit 2");
             person.transform.position = Vector3.Lerp(person.transform.position, toPoint, 0.7f);
             yield return new WaitForEndOfFrame();
         }

@@ -21,6 +21,9 @@ public class Breakable : MonoBehaviour
     private GameObject sparkleEffectPrefab;
     private GameObject sparkleInstance;
 
+    [SerializeField]
+    private GameObject firePrefab;
+
     private enum ObjectType {
         NONE,
         VASE,
@@ -36,6 +39,8 @@ public class Breakable : MonoBehaviour
     private void Start() {
         lm = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         sparkleInstance = Instantiate(sparkleEffectPrefab, transform.position, transform.rotation);
+        sparkleInstance.transform.parent = transform;
+        sparkleInstance.transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void Update() {
@@ -55,6 +60,12 @@ public class Breakable : MonoBehaviour
                     break;
                 case(ObjectType.CHANDELIER):
                     AudioManager.Instance.PlaySFX("Chandelier");
+                    if(firePrefab != null) {
+                        GameObject fireInstance = Instantiate(firePrefab, transform.position, Quaternion.Euler(Vector3.up));
+                        fireInstance.transform.position = new Vector3(fireInstance.transform.position.x, collision.gameObject.transform.position.y, fireInstance.transform.position.z);
+                    } else {
+                        Debug.Log("Breakable: Fire prefab not defined");
+                    }
                     break;
                 default:
                     Debug.Log("Object Type not defined");
@@ -63,10 +74,8 @@ public class Breakable : MonoBehaviour
 
             if(brokenPrefab != null) {
                 GameObject brokenObject = Instantiate(brokenPrefab, transform.position, transform.rotation);
-                /* if(objectType == ObjectType.VASE) {
-                    brokenObject.transform.Translate(new Vector3(0, -0.5f, 0), Space.World);
-                } */
                 brokenObject.transform.Rotate(new Vector3(-90,0,0), Space.Self);
+                brokenObject.transform.localScale = transform.localScale / 100;
             } else {
                 Debug.Log("Breakable: No Broken Prefab defined");
             }

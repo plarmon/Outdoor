@@ -12,6 +12,9 @@ public class Person : MonoBehaviour
         public string[] speech = new string[0];
     }
 
+    private Animator animator;
+    private int isAngryHash;
+
     // Speech
     private float textDisplayTime = 3.0f;
 
@@ -44,6 +47,9 @@ public class Person : MonoBehaviour
         alertedDialogue = ProceessText(alertedDialogueText);
 
         playerRef = GameObject.FindGameObjectWithTag("Player");
+
+        isAngryHash = Animator.StringToHash("isAngry");
+        animator = gameObject.GetComponent<Animator>();
     }
 
     private void Start() {
@@ -89,6 +95,7 @@ public class Person : MonoBehaviour
     public void Alert(){
         StopAllCoroutines();
         EndDialogue();
+        animator.SetTrigger(isAngryHash);
         StartCoroutine(AlertDialogue());
     }
 

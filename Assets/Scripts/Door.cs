@@ -43,6 +43,20 @@ public class Door : MonoBehaviour
     [SerializeField]
     private float maxHealth;
     public float currentHealth;
+    private float previousHealth;
+
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioSource doorAudioSource;
+    [SerializeField]
+    private AudioClip woodBreak;
+    [SerializeField]
+    private AudioClip[] woodCracks;
+    [SerializeField]
+    private AudioSource gruntingSource;
+    [SerializeField]
+    private float gruntingVelocity = 2.0f;
+    private bool isGrunting;
 
     private GameManager gm;
 
@@ -57,6 +71,7 @@ public class Door : MonoBehaviour
         }
 
         currentHealth = maxHealth;
+        previousHealth = currentHealth;
     }
 
     private void FixedUpdate() {
@@ -94,9 +109,32 @@ public class Door : MonoBehaviour
                 Debug.Log("Clamp z to 270");
                 transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 270);
             }
+
+            // Not a fan of how this sounds
+/*             Debug.Log(rb.velocity.magnitude);
+            if(rb.velocity.magnitude >= gruntingVelocity) {
+                if(!isGrunting) {
+                    StartGrunting();
+                }
+            } else {
+                if(isGrunting) {
+                    StopGrunting();
+                }
+            } */
         } else {
             rb.velocity = Vector3.zero;
+            // StopGrunting();
         }
+    }
+
+    private void StartGrunting() {
+        isGrunting = true;
+        gruntingSource.Play();
+    }
+
+    private void StopGrunting() {
+        isGrunting = false;
+        gruntingSource.Pause();
     }
 
     public void RotateClockwise(InputAction.CallbackContext value) {
@@ -118,15 +156,26 @@ public class Door : MonoBehaviour
     }
 
     public bool TakeDamage(float damage) {
-        currentHealth -= damage;
-        // Play cracking sound
-        if((currentHealth / maxHealth) <= 0.5f && !cracked) {
-            cracked = true;
-            model.GetComponent<MeshRenderer>().material = crackedMat;
-        }
-        if(currentHealth <= 0) {
-            Break();
-            return true;
+        if(!gm.GetPaused()) {
+            currentHealth -= damage;
+            // Play cracking sound
+            if((currentHealth / maxHealth) <= 0.5f && !cracked) {
+                cracked = true;
+                model.GetComponent<MeshRenderer>().material = crackedMat;
+            }
+            if(currentHealth <= 0) {
+                Break();
+                return true;
+            } else {
+                // Play sound if needed
+                if(previousHealth - currentHealth > 10) {
+                    doorAudioSource.Stop();
+                    doorAudioSource.clip = woodCracks[Random.Range(0,woodCracks.Length)];
+                    doorAudioSource.Play();
+                    previousHealth = currentHealth;
+                }
+                return false;
+            }
         } else {
             return false;
         }
@@ -136,8 +185,17 @@ public class Door : MonoBehaviour
         // Pause the Player
         gm.PausePlayer(true);
         // Spawn the broken door model
-        Instantiate(brokenDoorPrefab, transform.position, transform.rotation);
+        GameObject brokenDoor = Instantiate(brokenDoorPrefab, transform.position, transform.rotation);
+        brokenDoor.transform.Rotate(new Vector3(0, 0, 90), Space.Self);
         // Play sound
+        GameObject breakSound = Instantiate(new GameObject(), transform.position, transform.rotation);
+        breakSound.AddComponent(typeof(AudioSource));
+        breakSound.GetComponent<AudioSource>().clip = woodBreak;
+        breakSound.GetComponent<AudioSource>().Play();
+
+        /* doorAudioSource.Stop();
+        doorAudioSource.clip = woodBreak;
+        doorAudioSource.Play(); */
         // Start coroutine to restart the game
         gm.RestartLevelWithWait(2.0f);
         Destroy(gameObject);

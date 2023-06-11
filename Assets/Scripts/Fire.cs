@@ -9,18 +9,25 @@ public class Fire : MonoBehaviour
     [SerializeField]
     private float fireTime;
     [SerializeField]
+    private bool loops = true;
+    [SerializeField]
     private bool startingOff;
     [SerializeField]
     private ParticleSystem fireParticles;
     [SerializeField]
     private ParticleSystem smokeParticles;
+    [SerializeField]
+    private AudioSource fireSoundSource;
+
     private BoxCollider boxCollider;
     private bool isInFire;
     private Door doorRef;
 
     private void Start() {
         boxCollider = gameObject.GetComponent<BoxCollider>();
-        StartCoroutine(FireLoop());
+        if(loops) {
+            StartCoroutine(FireLoop());
+        }
     }
 
     private void Update() {
@@ -28,6 +35,7 @@ public class Fire : MonoBehaviour
             if(doorRef != null) {
                 if(doorRef.TakeDamage(damage * Time.deltaTime)) {
                     isInFire = false;
+                    fireSoundSource.Stop();
                 }
             }
         }
@@ -37,12 +45,14 @@ public class Fire : MonoBehaviour
         if(other.gameObject.CompareTag("Door")) {
             doorRef = other.gameObject.GetComponent<Door>();
             isInFire = true;
+            fireSoundSource.Play();
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.CompareTag("Door")) {
             isInFire = false;
+            fireSoundSource.Stop();
         }
     }
 
