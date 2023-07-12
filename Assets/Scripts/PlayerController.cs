@@ -46,7 +46,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MoveInput(InputAction.CallbackContext value) {
+/*     public void MoveInput(InputAction.CallbackContext value) {
+        Debug.Log("Hit");
         if(!gm.GetPaused()) {
             horizontalInput = value.ReadValue<Vector2>().x;
             horizontalInput = Mathf.RoundToInt(horizontalInput);
@@ -56,6 +57,19 @@ public class PlayerController : MonoBehaviour
             horizontalInput = 0;
             verticalInput = 0;
             feetAnimator.SetInteger(speedHash, 0);
-        }
+        } 
+    } */
+
+    public void GetMoveInput(InputAction.CallbackContext value) {
+        if(!gm.GetPaused()) {
+            horizontalInput = value.ReadValue<Vector2>().x;
+            horizontalInput = Mathf.RoundToInt(horizontalInput);
+            verticalInput = value.ReadValue<Vector2>().y;
+            verticalInput= Mathf.RoundToInt(verticalInput);
+        } else {
+            horizontalInput = 0;
+            verticalInput = 0;
+            feetAnimator.SetInteger(speedHash, 0);
+        } 
     }
 }

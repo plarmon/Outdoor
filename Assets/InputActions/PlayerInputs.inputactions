@@ -1,14 +1,14 @@
 {
-    "name": "DoorControl",
+    "name": "PlayerInputs",
     "maps": [
         {
             "name": "Player",
-            "id": "0a1fbfeb-3c97-4e60-ade2-ec9476ae250a",
+            "id": "537029da-debc-4cf2-86c7-8800e133e49f",
             "actions": [
                 {
-                    "name": "Look",
+                    "name": "Move",
                     "type": "Value",
-                    "id": "53bca669-ae34-48b4-9150-cf0f06c0d5dc",
+                    "id": "b9982ac0-05f8-4e05-9dc6-6485b3a02368",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -17,59 +17,26 @@
                 {
                     "name": "RotateClockwise",
                     "type": "Button",
-                    "id": "e1a42329-7c54-452c-9f8e-2d6c4efa877f",
+                    "id": "aba9c6c3-6e10-4f24-b999-d93e827d723f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RotateCounterClockwise",
                     "type": "Button",
-                    "id": "86498e5d-ea61-4fb1-b055-5d72061e5c72",
+                    "id": "91dcaeb0-e787-48f6-b363-376a4d44df03",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
-                    "path": "<Pointer>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e5f5442-8668-4b27-a940-df99bad7e831",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f9364409-4c11-444d-a4df-a2af18d8d5d3",
+                    "id": "37f69ecd-e911-4f40-8508-60a93cd17aad",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -80,7 +47,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f76f4b29-7916-4e7f-b123-1d5b7b1182f7",
+                    "id": "a35fd705-e653-471b-bc88-787f1ca1d8d3",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -88,6 +55,61 @@
                     "action": "RotateCounterClockwise",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "6a6a08df-5986-4605-8e2f-4cd5a149b43f",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "a0f11dd0-0ac3-4189-b3ee-6785a69ad24b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "003e1845-d8ad-4139-b517-95aff91d29a7",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "7b4d0dc1-a1b8-4a10-a9d7-b383e6f84d07",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3aa51dfc-84c9-4f63-896e-17b01833d0fa",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

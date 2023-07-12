@@ -60,8 +60,23 @@ public class Door : MonoBehaviour
 
     private GameManager gm;
 
+    private InputAction leftMouseClick;
+    private InputAction rightMouseClick;
+
     // Input
     private Vector2 mousePos;
+
+    private void Awake() {
+/*         leftMouseClick = new InputAction(binding: "<Mouse>/leftButton");
+        leftMouseClick.performed += ctx => LeftMouseClicked();
+        leftMouseClick.canceled += ctx => LeftMouseReleased();
+        leftMouseClick.Enable();
+
+        rightMouseClick = new InputAction(binding: "<Mouse>/rightButton");
+        rightMouseClick.performed += ctx => RightMouseClicked();
+        rightMouseClick.canceled += ctx => RightMouseReleased();
+        rightMouseClick.Enable(); */
+    }
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
